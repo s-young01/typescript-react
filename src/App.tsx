@@ -1,5 +1,6 @@
 import { useReducer } from 'react';
 import './App.css';
+import InputTodo from './components/InputTodo';
 import ToDoLists from './components/ToDoLists';
 
 const initialState = [
@@ -40,12 +41,25 @@ function reducer(state: dataType[], action: actionType):dataType[] {
       return state;
   }
 }
+
 function App() {
   const [todos, dispatch] = useReducer(reducer, initialState);
 
+  const onAddTodo = (todo: dataType) => {
+    dispatch({type: 'ADDTODO', todo: todo});
+  }
+  const onDelTodo = (id: number) => {
+    dispatch({type: 'DELTODO', id: id});
+  }
+  const onToggleTodo = (id: number) => {
+    dispatch({type: 'TOGGLETODO', id: id});
+  }
   return (
     <div className="App">
-      <ToDoLists todos={todos}/>
+      <InputTodo onAddTodo={onAddTodo}/>
+      <ToDoLists todos={todos}
+      onDelTodo={onDelTodo}
+      onToggleTodo={onToggleTodo}/>
     </div>
   );
 }
