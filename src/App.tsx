@@ -1,7 +1,9 @@
 import { useReducer } from 'react';
 import './App.css';
 import InputTodo from './components/InputTodo';
+import ReducerSampleEdit from './components/ReducerSampleEdit';
 import ToDoLists from './components/ToDoLists';
+import SampleContext from './context/SampleContext';
 
 const initialState = [
   {
@@ -60,6 +62,9 @@ function App() {
       <ToDoLists todos={todos}
       onDelTodo={onDelTodo}
       onToggleTodo={onToggleTodo}/>
+      <SampleContext>
+        <ReducerSampleEdit/>
+      </SampleContext>
     </div>
   );
 }
